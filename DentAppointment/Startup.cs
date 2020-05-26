@@ -12,6 +12,7 @@ using DentAppointment.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using DentAppointment.Data.Entity;
 
 namespace DentAppointment
 {
@@ -31,8 +32,20 @@ namespace DentAppointment
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"))); //db connection string reading from appsettings.json
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+            services.AddIdentity<AppUser, AppRole>(
+                            options =>
+                            {
+                                options.User.RequireUniqueEmail = true;
+                                options.Password.RequiredLength = 6;
+                                options.Password.RequireLowercase = true;
+                                options.SignIn.RequireConfirmedEmail = true;
+
+                            }
+                         )
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders(); //cookie verisi vasıtasıyla bir tokena sahip olmasını sağlıcak oturum acan kullanıcının
 
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
