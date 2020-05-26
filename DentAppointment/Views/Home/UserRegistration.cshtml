@@ -1,0 +1,14 @@
+﻿@model UserRegistrationViewModel
+@{
+    ViewData["Title"] = "User Registration";
+}
+
+<h1>User Registration</h1>
+<form asp-action="UserRegistration" asp-controller="home">
+    <label>Name:</label> <input asp-for="Name" /> <br />
+    <label>Surname:</label> <input asp-for="Surname" /> <br />
+    <label>City:</label> <input asp-for="CityId" /> <br />
+    <button type="submit" name="register" value="Register">Register</button>
+    <button type="submit" name="cancel" value="Cancel" title="Cancel">Cancel</button>
+</form>
+
