@@ -30,7 +30,6 @@ namespace DentAppointment.Models
         [EmailAddress(ErrorMessage ="Please check your e-mail")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Color")]
         [Display(Name = "Appointment Color")]
         public string Color { get; set; }
 
