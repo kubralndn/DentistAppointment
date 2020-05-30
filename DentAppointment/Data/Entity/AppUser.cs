@@ -8,7 +8,6 @@ namespace DentAppointment.Data.Entity
         public bool IsDentist { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-
         public string Color { get; set; }
         public List<Appointment> Appointments { get; set; } //one to many relation
     }
