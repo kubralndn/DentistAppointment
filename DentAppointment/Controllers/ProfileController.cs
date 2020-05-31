@@ -6,6 +6,7 @@ using DentAppointment.Data.Entity;
 using DentAppointment.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DentAppointment.Controllers
 {
@@ -23,12 +24,18 @@ namespace DentAppointment.Controllers
             {
                 return View("Error");
             }
+            var dentists = _userManager.Users.Where(x => x.IsDentist);
             if (_userManager.IsInRoleAsync(user, "Secretary").Result)
             {
                 SecretaryViewModel model = new SecretaryViewModel()
                 {
                     User = user,
-                    Dentists = _userManager.Users.Where(x => x.IsDentist)
+                    Dentists = dentists,
+                    DentistsSelectList = dentists.Select(n => new SelectListItem
+                    {
+                        Value = n.Id,
+                        Text = $"{n.Name} {n.Surname}"
+                    }).ToList()
 
                 };
                 return View("Secretary",model);

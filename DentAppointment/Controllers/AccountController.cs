@@ -55,7 +55,7 @@ namespace DentAppointment.Controllers
             var result =await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false); //last parameter for lock the system for a while when 2-3 fails 
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Profile");
             }
 
             ModelState.AddModelError(string.Empty, "Sign-in to session is failed");

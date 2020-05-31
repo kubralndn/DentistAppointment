@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DentAppointment.Data.Entity
+namespace DentAppointment.Models
 {
-    public class Appointment
+    public class AddorUpdateAppointment
     {
         public string UserId { get; set; }//foreign Key
-        public AppUser User { get; set; } //navigation property
         public int Id { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
